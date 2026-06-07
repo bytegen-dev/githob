@@ -1,0 +1,16 @@
+node_modules/
+.turbo/
+dist/
+build/
+
+.env
+.env.local
+.env.*.local
+
+.cursor/
+
+.commit-log.local
+
+*.log
+.DS_Store
+Thumbs.db
