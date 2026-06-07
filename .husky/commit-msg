@@ -1,0 +1,12 @@
+#!/bin/sh
+COMMIT_MSG=$(cat "$1")
+PATTERN="^(feat|fix|chore|docs|refactor|test|style|perf)(\(.+\))?: .{1,100}"
+if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
+  echo ""
+  echo "🛑 Invalid commit message format"
+  echo "   Expected: type(scope): description"
+  echo "   Example:  feat(api): add developer tracking route"
+  echo "   Types: feat | fix | chore | docs | refactor | test | style | perf"
+  echo ""
+  exit 1
+fi

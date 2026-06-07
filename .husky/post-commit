@@ -1,0 +1,14 @@
+#!/bin/sh
+TODAY=$(date +%Y-%m-%d)
+TIME=$(date +%H:%M)
+MSG=$(git log -1 --pretty=%s)
+COUNT_BEFORE=$(grep -c "^$TODAY" .commit-log.local 2>/dev/null || echo 0)
+echo "$TODAY $TIME | $MSG" >> .commit-log.local
+COUNT=$((COUNT_BEFORE + 1))
+REMAINING=$((5 - COUNT))
+echo ""
+echo "✅ Commit $COUNT/5 today — $REMAINING remaining"
+if [ "$COUNT" -eq 5 ]; then
+  echo "   Daily limit reached. Go test what you built. 🧪"
+fi
+echo ""

@@ -1,0 +1,4 @@
+#!/bin/sh
+bash scripts/commit-guard.sh || exit 1
+bun run lint || exit 1
+bun run typecheck || exit 1
