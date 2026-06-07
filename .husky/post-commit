@@ -2,7 +2,8 @@
 TODAY=$(date +%Y-%m-%d)
 TIME=$(date +%H:%M)
 MSG=$(git log -1 --pretty=%s)
-COUNT_BEFORE=$(grep -c "^$TODAY" .commit-log.local 2>/dev/null || echo 0)
+COUNT_BEFORE=$(grep -c "^$TODAY" .commit-log.local 2>/dev/null | tr -d '[:space:]')
+if ! [[ "$COUNT_BEFORE" =~ ^[0-9]+$ ]]; then COUNT_BEFORE=0; fi
 echo "$TODAY $TIME | $MSG" >> .commit-log.local
 COUNT=$((COUNT_BEFORE + 1))
 REMAINING=$((5 - COUNT))
